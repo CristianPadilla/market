@@ -11,7 +11,8 @@ import java.util.Optional;
 @Service
 public class ProductService {
 
-    @Autowired
+
+    @Autowired // the injected dependency is com.cpadilla.market.persistence.ProductRepository (is internal)
     private IProductRepository productRepository;
 
     public List<Product> getAll() {

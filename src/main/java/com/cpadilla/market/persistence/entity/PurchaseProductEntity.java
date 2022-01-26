@@ -15,6 +15,7 @@ public class PurchaseProductEntity {
     private Boolean status;
 
     @ManyToOne
+    @MapsId("purchaseId") // PK attribute in PurchaseEntity for when saving in cascade, every item knows what purchase corresponds through that attribute
     @JoinColumn(name = "purchase_id", insertable = false, updatable = false)
     private PurchaseEntity purchaseEntity;
 
@@ -53,5 +54,21 @@ public class PurchaseProductEntity {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public PurchaseEntity getPurchaseEntity() {
+        return purchaseEntity;
+    }
+
+    public void setPurchaseEntity(PurchaseEntity purchaseEntity) {
+        this.purchaseEntity = purchaseEntity;
+    }
+
+    public ProductEntity getProductEntity() {
+        return productEntity;
+    }
+
+    public void setProductEntity(ProductEntity productEntity) {
+        this.productEntity = productEntity;
     }
 }

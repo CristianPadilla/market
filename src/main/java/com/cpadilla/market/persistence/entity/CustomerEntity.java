@@ -8,13 +8,13 @@ import java.util.List;
 public class CustomerEntity {
 
     @Id
-    private Integer id;
+    private String id;
 
     private String name;
     private String surname;
 
     @Column(name = "phone_number")
-    private Integer phoneNumber;
+    private Long phoneNumber;
 
     private String address;
     private String email;
@@ -23,12 +23,11 @@ public class CustomerEntity {
     private List<PurchaseEntity> purchaseEntities;
 
 
-
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -48,11 +47,11 @@ public class CustomerEntity {
         this.surname = surname;
     }
 
-    public Integer getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

@@ -32,7 +32,7 @@ public class ProductEntity {
 
     // map out relationship with category
     @ManyToOne // many products have one category
-    @JoinColumn(name = "category_id",insertable = false,updatable = false)
+    @JoinColumn(name = "category_id",insertable = false,updatable = false) //  product.category_id in database
     private CategoryEntity categoryEntity;
 
 

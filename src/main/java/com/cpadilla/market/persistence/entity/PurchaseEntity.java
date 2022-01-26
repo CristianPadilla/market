@@ -23,16 +23,15 @@ public class PurchaseEntity {
 
     private String commentary;
 
-    private Boolean status;
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", insertable = false, updatable = false)
     private CustomerEntity customerEntity;
 
-    @OneToMany(mappedBy = "purchaseEntity")
+    @OneToMany(mappedBy = "purchaseEntity", cascade = {CascadeType.ALL})
+    // cascade instruction for saving purchase items in cascade when saving a purchase
     private List<PurchaseProductEntity> products;
-
-
 
 
     public Integer getPurchaseId() {
@@ -75,11 +74,27 @@ public class PurchaseEntity {
         this.commentary = commentary;
     }
 
-    public Boolean getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public CustomerEntity getCustomerEntity() {
+        return customerEntity;
+    }
+
+    public void setCustomerEntity(CustomerEntity customerEntity) {
+        this.customerEntity = customerEntity;
+    }
+
+    public List<PurchaseProductEntity> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<PurchaseProductEntity> products) {
+        this.products = products;
     }
 }

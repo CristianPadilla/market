@@ -14,9 +14,11 @@ import java.util.Optional;
 @Repository // since this class performs database operations, is a good practice indicate to spring this is a repository class
 public class ProductRepository implements IProductRepository {
 
+    // the injected dependency comes from spring (is external)
     @Autowired // dependency injection through spring in order to avoid instantiation of these attributes internally, and use them
     private ProductCrudRepository productCrudRepository;
 
+    // is external too
     @Autowired
     private ProductMapper mapper;
 
