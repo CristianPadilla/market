@@ -2,10 +2,7 @@ package com.cpadilla.market.web.controller;
 
 import com.cpadilla.market.domain.Product;
 import com.cpadilla.market.domain.service.ProductService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +19,8 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/all")
-    @ApiOperation("Get all supermarket products") //description
+    //description and authorization because of security using JWT
+    @ApiOperation(value = "Get all supermarket products", authorizations = {@Authorization(value = "JWT")})
     @ApiResponse(code = 200, message = "OK")      // expected response
     public ResponseEntity<List<Product>> getAll() {
         return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
@@ -34,7 +32,7 @@ public class ProductController {
             @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 404, message = "product not found")
     })
-    public ResponseEntity<Product> getProduct(@ApiParam(value = "the product id to search",required = true,example = "13") @PathVariable("id") int productId) {
+    public ResponseEntity<Product> getProduct(@ApiParam(value = "the product id to search", required = true, example = "13") @PathVariable("id") int productId) {
         return productService.getProduct(productId).map(product -> new ResponseEntity<>(product, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
