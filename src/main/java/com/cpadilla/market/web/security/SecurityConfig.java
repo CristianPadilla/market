@@ -22,6 +22,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JWTRequestFilter jwtRequestFilter;
 
+    private static final String[] AUTH_WHITELIST = {
+            "/v2/api-docs",
+            "/configuration/ui",
+            "/swagger-resources/**",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            "/swagger-ui/index.html",
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/swagger-resources"
+    };
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -49,8 +62,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // avoid spring security to authenticate swagger (documentation)
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui",
-                "/swagger-resources/**", "/configuration/security",
-                "/swagger-ui.html", "/webjars/**","/swagger-ui/index.html");
+        web.ignoring().antMatchers(AUTH_WHITELIST);
+//        web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui",
+//                "/swagger-resources/**", "/configuration/security",
+//                "/swagger-ui.html", "/webjars/**","/swagger-ui/index.html");
     }
 }
