@@ -32,7 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/swagger-ui/index.html",
             "/v3/api-docs/**",
             "/swagger-ui/**",
-            "/swagger-resources"
+            "/swagger-resources",
+            "/products/all" // temporal for testing
     };
 
 
@@ -63,8 +64,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(AUTH_WHITELIST);
-//        web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui",
-//                "/swagger-resources/**", "/configuration/security",
-//                "/swagger-ui.html", "/webjars/**","/swagger-ui/index.html");
     }
 }

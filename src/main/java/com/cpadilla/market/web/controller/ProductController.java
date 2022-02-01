@@ -19,8 +19,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/all")
-    //description and authorization because of security using JWT
-    @ApiOperation(value = "Get all supermarket products", authorizations = {@Authorization(value = "JWT")})
+    @ApiOperation(value = "Get all supermarket products")
     @ApiResponse(code = 200, message = "OK")      // expected response
     public ResponseEntity<List<Product>> getAll() {
         return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
@@ -38,6 +37,7 @@ public class ProductController {
     }
 
     @GetMapping("/category/{categoryId}")
+    @ApiOperation("Get product by category")
     public ResponseEntity<List<Product>> getByCategory(@PathVariable("categoryId") int categoryId) {
         return productService.getByCategory(categoryId)
                 .map(products -> new ResponseEntity<>(products, HttpStatus.OK))
@@ -45,6 +45,7 @@ public class ProductController {
     }
 
     @PostMapping("/save")
+    @ApiOperation("Save a product")
     public ResponseEntity<Product> save(@RequestBody Product product) {
         return new ResponseEntity<>(productService.save(product), HttpStatus.CREATED);
     }

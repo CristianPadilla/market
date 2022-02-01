@@ -6,8 +6,7 @@ import javax.persistence.*;
 @Table(name = "purchase_product")
 public class PurchaseProductEntity {
 
-    // composed PK
-    @EmbeddedId
+    @EmbeddedId // composed PK
     private PurchaseProductPKEntity id;
 
     private Integer amount;

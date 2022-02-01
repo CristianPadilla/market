@@ -10,7 +10,7 @@ public class ProductEntity {
 
     // attributes cannot be of primitive types, use wrapper types
     @Id //this is a primary key, so...
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // java auto-increme id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // java auto-increment id
     @Column(name = "product_id")
     private Integer productId;
 
